@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>I Love You Fariya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#2a0f22;--glow:#ff5c8a;--text:#fff3f6;--soft:#ffc2d4;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 50% 40%,#4a1638,var(--bg) 70%);color:var(--text);font-family:Georgia,"Times New Roman",serif;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px)}
+canvas{position:fixed;inset:0;width:100%;height:100%}
+main{position:relative;z-index:1}
+.line{font-size:clamp(20px,6vw,30px);color:var(--soft);min-height:1.4em;letter-spacing:.04em}
+.name{font-size:clamp(52px,19vw,110px);font-style:italic;margin:.1em 0;color:var(--text);text-shadow:0 0 24px var(--glow),0 0 60px var(--glow);opacity:0;transform:scale(.8);transition:opacity 1.6s,transform 1.6s}
+.name.show{opacity:1;transform:scale(1)}
+.heart{display:inline-block;color:var(--glow);animation:beat 1.1s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.3)}60%{transform:scale(1.05)}}
+button{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:2;background:none;color:var(--soft);border:1px solid var(--soft);border-radius:999px;padding:8px 18px;font:inherit;font-size:14px;opacity:.6}
+@media (prefers-reduced-motion:reduce){.heart{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<main>
+  <div class="line" id="t"></div>
+  <div class="name" id="n">Fariya <span class="heart">♥</span></div>
+</main>
+<button id="b">আবার চালাও</button>
+<script>
+const cv=document.getElementById('c'),x=cv.getContext('2d');
+let W,H,hearts=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+size();addEventListener('resize',size);
+function spawn(){const m=Math.random()<.35;hearts.push({m:m,x:Math.random()*W,y:H+20,s:m?46+Math.random()*30:8+Math.random()*22,v:m?.7+Math.random()*.8:.6+Math.random()*1.6,d:Math.random()*6,a:m?.9:.25+Math.random()*.5})}
+function heart(px,py,s){x.beginPath();x.moveTo(px,py+s/4);x.bezierCurveTo(px,py,px-s/2,py,px-s/2,py+s/4);x.bezierCurveTo(px-s/2,py+s/2,px,py+s*.7,px,py+s);x.bezierCurveTo(px,py+s*.7,px+s/2,py+s/2,px+s/2,py+s/4);x.bezierCurveTo(px+s/2,py,px,py,px,py+s/4);x.fill()}
+function loop(){
+  x.clearRect(0,0,W,H);
+  if(Math.random()<.15)spawn();
+  hearts=hearts.filter(h=>h.y>-40);
+  for(const h of hearts){h.y-=h.v;h.d+=.03;const px=h.x+Math.sin(h.d)*14;x.fillStyle='rgba(255,92,138,'+h.a+')';heart(px,h.y,h.s);if(h.m){x.fillStyle='#fff';x.font='bold '+Math.round(h.s*.3)+'px Georgia,serif';x.textAlign='center';x.textBaseline='middle';x.fillText('M+F',px,h.y+h.s*.42)}}
+  requestAnimationFrame(loop)
+}
+loop();
+const lines=["আমার মনের কথা…","শুধু তোমার জন্য","I love you"];
+const t=document.getElementById('t'),n=document.getElementById('n');
+let run=0;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function type(s,id){for(let i=1;i<=s.length;i++){if(id!==run)return;t.textContent=s.slice(0,i);await wait(90)}}
+async function play(){
+  const id=++run;
+  n.classList.remove('show');t.textContent='';
+  for(const l of lines){await type(l,id);if(id!==run)return;await wait(900)}
+  if(id!==run)return;
+  n.classList.add('show');
+}
+document.getElementById('b').onclick=play;
+play();
+</script>
+</body>
+</html>
