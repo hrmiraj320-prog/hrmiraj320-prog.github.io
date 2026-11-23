@@ -21,18 +21,22 @@
     h1 { font-size:38px; margin:0; color:var(--accent); }
     #search { width:88%; max-width:480px; padding:12px 14px; font-size:16px; border:1px solid var(--btn); border-radius:25px; background:var(--card); color:var(--text); outline:none; }
     nav { display:flex; justify-content:center; gap:8px; padding:15px; }
-    nav button { flex:1; max-width:130px; padding:12px 5px; font-size:16px; border:none; border-radius:8px; background:var(--btn); color:var(--btn-text); }
+    nav button { flex:1; max-width:100px; padding:12px 4px; font-size:15px; border:none; border-radius:8px; background:var(--btn); color:var(--btn-text); }
     nav button.active { background:var(--accent); color:var(--active-text); font-weight:bold; }
     .tab { display:none; padding:0 15px 20px; }
     .tab.show { display:block; }
     .tab h2 { display:none; max-width:500px; margin:10px auto 0; text-align:left; font-size:18px; color:var(--accent); }
+    .tab h3 { max-width:500px; margin:18px auto 0; text-align:left; font-size:16px; color:var(--muted); }
     body.searching .tab { display:block; }
     body.searching .tab h2 { display:block; }
+    body.searching .tab h3 { display:none; }
     body.searching .tab.empty { display:none; }
     .card { background:var(--card); margin:10px auto; max-width:500px; padding:14px; border-radius:10px; text-align:left; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
     .card.hide { display:none; }
     .card b { color:var(--accent); display:block; margin-bottom:4px; }
     .card span { font-size:19px; }
+    details.card summary { cursor:pointer; font-weight:bold; font-size:17px; color:var(--accent); }
+    details.card ol { margin:10px 0 0; padding-left:30px; line-height:1.9; list-style-type:bengali; }
     #none { display:none; padding:20px; color:var(--muted); }
     footer { padding:20px 20px 90px; font-size:14px; color:var(--muted); }
     #thanks { position:fixed; left:50%; bottom:-100px; transform:translateX(-50%); width:88%; max-width:420px; box-sizing:border-box; padding:14px 18px; background:var(--accent); color:var(--active-text); border-radius:14px; font-size:16px; font-weight:bold; box-shadow:0 4px 14px rgba(0,0,0,0.4); transition:bottom 0.6s ease; z-index:100; }
@@ -50,16 +54,17 @@
   <header>
     <h1>Scientific</h1>
     <p>বিজ্ঞানের সূত্র এক জায়গায়</p>
-    <input id="search" type="text" placeholder="🔍 সূত্রের নাম লিখে খুঁজুন..." oninput="search(this.value)">
+    <input id="search" type="text" placeholder="🔍 সূত্র বা অধ্যায়ের নাম লিখে খুঁজুন..." oninput="search(this.value)">
   </header>
 
   <nav>
     <button class="active" onclick="show('physics', this)">পদার্থ</button>
     <button onclick="show('chemistry', this)">রসায়ন</button>
     <button onclick="show('math', this)">গণিত</button>
+    <button onclick="show('hsc', this)">HSC</button>
   </nav>
 
-  <div id="none">কোনো সূত্র পাওয়া যায়নি</div>
+  <div id="none">কিছু পাওয়া যায়নি</div>
 
   <div id="physics" class="tab show">
     <h2>পদার্থ</h2>
@@ -100,6 +105,133 @@
     <div class="card"><b>ত্রিকোণমিতি</b><span>sin²θ + cos²θ = 1</span></div>
   </div>
 
+  <div id="hsc" class="tab">
+    <h2>HSC বিজ্ঞান</h2>
+
+    <h3>পদার্থবিজ্ঞান</h3>
+    <details class="card">
+      <summary>পদার্থবিজ্ঞান ১ম পত্র</summary>
+      <ol>
+        <li>ভৌত রাশি ও এদের পরিমাপ</li>
+        <li>ভেক্টর</li>
+        <li>গতিবিদ্যা</li>
+        <li>নিউটনীয় বলবিদ্যা</li>
+        <li>কাজ, ক্ষমতা ও শক্তি</li>
+        <li>মহাকর্ষ ও অভিকর্ষ</li>
+        <li>পদার্থের গাঠনিক ধর্ম</li>
+        <li>পর্যাবৃত্ত গতি</li>
+        <li>তরঙ্গ</li>
+        <li>আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</li>
+      </ol>
+    </details>
+    <details class="card">
+      <summary>পদার্থবিজ্ঞান ২য় পত্র</summary>
+      <ol>
+        <li>তাপগতিবিদ্যা</li>
+        <li>স্থির তড়িৎ</li>
+        <li>চল তড়িৎ</li>
+        <li>তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চৌম্বকত্ব</li>
+        <li>তড়িৎ চৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ</li>
+        <li>জ্যামিতিক আলোকবিজ্ঞান</li>
+        <li>ভৌত আলোকবিজ্ঞান</li>
+        <li>আধুনিক পদার্থবিজ্ঞানের সূচনা</li>
+        <li>পরমাণুর মডেল এবং নিউক্লিয়ার পদার্থবিজ্ঞান</li>
+        <li>সেমিকন্ডাক্টর ও ইলেকট্রনিক্স</li>
+        <li>জ্যোতির্বিজ্ঞান</li>
+      </ol>
+    </details>
+
+    <h3>রসায়ন</h3>
+    <details class="card">
+      <summary>রসায়ন ১ম পত্র</summary>
+      <ol>
+        <li>ল্যাবরেটরির নিরাপদ ব্যবহার</li>
+        <li>গুণগত রসায়ন</li>
+        <li>মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন</li>
+        <li>রাসায়নিক পরিবর্তন</li>
+        <li>কর্মমুখী রসায়ন</li>
+      </ol>
+    </details>
+    <details class="card">
+      <summary>রসায়ন ২য় পত্র</summary>
+      <ol>
+        <li>পরিবেশ রসায়ন</li>
+        <li>জৈব রসায়ন</li>
+        <li>পরিমাণগত রসায়ন</li>
+        <li>তড়িৎ রসায়ন</li>
+        <li>অর্থনৈতিক রসায়ন</li>
+      </ol>
+    </details>
+
+    <h3>জীববিজ্ঞান</h3>
+    <details class="card">
+      <summary>জীববিজ্ঞান ১ম পত্র</summary>
+      <ol>
+        <li>কোষ ও এর গঠন</li>
+        <li>কোষ বিভাজন</li>
+        <li>কোষ রসায়ন</li>
+        <li>অণুজীব</li>
+        <li>শৈবাল ও ছত্রাক</li>
+        <li>ব্রায়োফাইটা ও টেরিডোফাইটা</li>
+        <li>নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</li>
+        <li>টিস্যু ও টিস্যুতন্ত্র</li>
+        <li>উদ্ভিদ শারীরতত্ত্ব</li>
+        <li>উদ্ভিদ প্রজনন</li>
+        <li>জীবপ্রযুক্তি</li>
+        <li>জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</li>
+      </ol>
+    </details>
+    <details class="card">
+      <summary>জীববিজ্ঞান ২য় পত্র</summary>
+      <ol>
+        <li>প্রাণীর ভিন্নতা ও শ্রেণিবিন্যাস</li>
+        <li>প্রাণীর পরিচিতি</li>
+        <li>মানব শরীরতত্ত্ব: পরিপাক ও শোষণ</li>
+        <li>মানব শরীরতত্ত্ব: রক্ত সংবহন</li>
+        <li>মানব শরীরতত্ত্ব: শ্বসন ও শ্বাসক্রিয়া</li>
+        <li>মানব শরীরতত্ত্ব: বর্জ্য ও নিষ্কাশন</li>
+        <li>মানব শরীরতত্ত্ব: চলন ও অঙ্গচালনা</li>
+        <li>মানব শরীরতত্ত্ব: সমন্বয় ও নিয়ন্ত্রণ</li>
+        <li>মানব জীবনের ধারাবাহিকতা</li>
+        <li>মানবদেহের প্রতিরক্ষা</li>
+        <li>জিনতত্ত্ব ও বিবর্তন</li>
+        <li>প্রাণীর আচরণ</li>
+      </ol>
+    </details>
+
+    <h3>উচ্চতর গণিত</h3>
+    <details class="card">
+      <summary>উচ্চতর গণিত ১ম পত্র</summary>
+      <ol>
+        <li>ম্যাট্রিক্স ও নির্ণায়ক</li>
+        <li>ভেক্টর</li>
+        <li>সরলরেখা</li>
+        <li>বৃত্ত</li>
+        <li>বিন্যাস ও সমাবেশ</li>
+        <li>ত্রিকোণমিতিক অনুপাত</li>
+        <li>সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত</li>
+        <li>ফাংশন ও ফাংশনের লেখচিত্র</li>
+        <li>অন্তরীকরণ</li>
+        <li>যোগজীকরণ</li>
+      </ol>
+    </details>
+    <details class="card">
+      <summary>উচ্চতর গণিত ২য় পত্র</summary>
+      <ol>
+        <li>বাস্তব সংখ্যা ও অসমতা</li>
+        <li>যোগাশ্রয়ী প্রোগ্রাম</li>
+        <li>জটিল সংখ্যা</li>
+        <li>বহুপদী ও বহুপদী সমীকরণ</li>
+        <li>দ্বিপদী বিস্তৃতি</li>
+        <li>কণিক</li>
+        <li>বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ</li>
+        <li>স্থিতিবিদ্যা</li>
+        <li>সমতলে বস্তুকণার গতি</li>
+        <li>বিস্তার পরিমাপ ও সম্ভাবনা</li>
+      </ol>
+    </details>
+  </div>
+
   <div id="thanks" onclick="this.classList.remove('up')">🙏 ধন্যবাদ আমার ওয়েবসাইটে আসার জন্য</div>
 
   <footer>Created by Habibur Rahman Miraj</footer>
@@ -127,6 +259,7 @@
         for (var j = 0; j < cards.length; j++) {
           var match = q === '' || cards[j].textContent.toLowerCase().indexOf(q) !== -1;
           cards[j].classList.toggle('hide', !match);
+          if (cards[j].tagName === 'DETAILS') cards[j].open = (q !== '' && match);
           if (match) count++;
         }
         tabs[i].classList.toggle('empty', q !== '' && count === 0);
